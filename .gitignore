@@ -1,0 +1,5 @@
+# Keil build and user files
+/MDK-ARM/voice-storage-playback/
+/MDK-ARM/*.lst
+/MDK-ARM/*.uvguix.*
+/MDK-ARM/*.uvoptx
