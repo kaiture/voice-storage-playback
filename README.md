@@ -496,7 +496,9 @@ Type-C 电源不是插上就出电的。电源端（充电宝/充电器）通过
 
 实板的元件位号、参数和连线以原理图为准。
 
-[查看或下载实板原理图（PDF）](docs/SCH_Schematic1_2026-11-24.pdf)
+[![实板原理图，点击查看大图](docs/SCH_Schematic1_2026-11-24.png)](https://raw.githubusercontent.com/kaiture/voice-storage-playback/main/docs/SCH_Schematic1_2026-11-24.png)
+
+[下载原理图 PDF](https://raw.githubusercontent.com/kaiture/voice-storage-playback/main/docs/SCH_Schematic1_2026-11-24.pdf)
 
 <a name="tutorial-firmware"></a>
 
