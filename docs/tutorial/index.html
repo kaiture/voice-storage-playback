@@ -387,12 +387,11 @@ sup a:hover { text-decoration: underline; }
     <a href="#ch2"><span class="n">02</span>总体方案与器材</a>
     <p class="side-part">Part II · 硬件实现</p>
     <a href="#ch3"><span class="n">03</span>硬件电路设计</a>
-    <a href="#ch4"><span class="n">04</span>原理图绘制</a>
-    <a href="#ch5"><span class="n">05</span>PCB 布线</a>
+    <a href="#ch4"><span class="n">04</span>实板原理图</a>
     <p class="side-part">Part III · 软件与联调</p>
-    <a href="#ch6"><span class="n">06</span>软件设计</a>
-    <a href="#ch7"><span class="n">07</span>调试与排查</a>
-    <a href="#ch8"><span class="n">08</span>发挥部分进阶</a>
+    <a href="#ch6"><span class="n">05</span>软件设计</a>
+    <a href="#ch7"><span class="n">06</span>调试与排查</a>
+    <a href="#ch8"><span class="n">07</span>发挥部分进阶</a>
   </nav>
 
   <div class="side-foot">
@@ -436,11 +435,10 @@ sup a:hover { text-decoration: underline; }
       <li><a href="#ch1"><i>01</i>改编后的题目（任务书）</a></li>
       <li><a href="#ch2"><i>02</i>总体方案与器材清单</a></li>
       <li><a href="#ch3"><i>03</i>硬件电路设计</a></li>
-      <li><a href="#ch4"><i>04</i>原理图绘制教程</a></li>
-      <li><a href="#ch5"><i>05</i>PCB 布线教程</a></li>
-      <li><a href="#ch6"><i>06</i>软件设计（含关键代码）</a></li>
-      <li><a href="#ch7"><i>07</i>调试步骤与问题排查</a></li>
-      <li><a href="#ch8"><i>08</i>发挥部分进阶</a></li>
+      <li><a href="#ch4"><i>04</i>实板原理图</a></li>
+      <li><a href="#ch6"><i>05</i>软件设计（含关键代码）</a></li>
+      <li><a href="#ch7"><i>06</i>调试步骤与问题排查</a></li>
+      <li><a href="#ch8"><i>07</i>发挥部分进阶</a></li>
     </ol>
   </nav>
 </section>
@@ -582,7 +580,7 @@ flowchart LR
   <div id="chart-capacity" style="width:100%;min-height:400px"></div>
 </figure>
 
-<p>写入速度校验：Flash 页编程（256Byte）典型 0.7ms、最大 3ms，而 256Byte 语音数据每 32ms 才产生一次，<mark class="key">写入完全来得及</mark>，只需注意「先擦后录」（见 6.4 节）。</p>
+<p>写入速度校验：Flash 页编程（256Byte）典型 0.7ms、最大 3ms，而 256Byte 语音数据每 32ms 才产生一次，<mark class="key">写入完全来得及</mark>，只需注意「先擦后录」（见 5.4 节）。</p>
 
 <h4>增益还够不够：一条链走的 dB 账</h4>
 <p>题目要「放大器 1 增益 46dB 可调、放大器 2 增益 40dB 可调」。dB 与倍数的换算是<strong>电压比 20lg</strong>：</p>
@@ -649,7 +647,7 @@ flowchart LR
     <tr><td>PB12（21）</td><td>输出</td><td>GPIO 推挽</td><td>MCP4821 ②脚 /CS，10kΩ 上拉 3.3V</td><td>DAC 片选，CS 上升沿更新输出；⑤脚 /LDAC 直接接地</td></tr>
     <tr><td rowspan="3">调试/扩展</td><td>PA13（SWDIO）</td><td>双向</td><td>SWDIO</td><td>板上 4P SWD 排针</td><td>下载与在线调试，必接</td></tr>
     <tr><td>PA14（SWCLK）</td><td>双向</td><td>SWCLK</td><td>板上 4P SWD 排针</td><td>必接</td></tr>
-    <tr><td>PA9（30）</td><td>输出</td><td>USART1_TX 复用推挽</td><td>USB-TTL 模块 RX</td><td>可选调试串口 230400bps：打印日志 / 上传波形画图（见 8.4）</td></tr>
+    <tr><td>PA9（30）</td><td>输出</td><td>USART1_TX 复用推挽</td><td>USB-TTL 模块 RX</td><td>可选调试串口 230400bps：打印日志 / 上传波形画图（见 7.4）</td></tr>
   </tbody>
 </table></div>
 
@@ -774,7 +772,7 @@ f0 = 1/(2π√(R1·R5·C3·C4)) ≈ 300Hz
   <li><strong>MAX4466 的 VCC 接 3.3V</strong>，GND 共地，OUT 经 <strong>R2 1kΩ</strong> 进低通；R2 用来隔离模块输出与滤波电容，避免模块内部放大器直接驱动容性负载而自激；</li>
   <li><strong>U2 ⑦脚 → PA0</strong>，直流 1.65V；这条线是全板最敏感的模拟线，越短越好；</li>
   <li>两节都接成跟随器，<strong>没有增益电阻</strong>，所以不需要隔直电容；若误接成同相放大，会同时改变 Q 值和直流工作点；</li>
-  <li>调试目标：安静时 U2 ⑦脚稳定在 <strong>1.65V</strong>，正常说话时 ADC 读数在 <strong>300~3800</strong> 之间摆动（见第 7 章）。</li>
+  <li>调试目标：安静时 U2 ⑦脚稳定在 <strong>1.65V</strong>，正常说话时 ADC 读数在 <strong>300~3800</strong> 之间摆动（见第 6 章）。</li>
 </ul>
 
 <div class="warn"><b>最容易接错的三处</b>
@@ -888,152 +886,11 @@ Type-C 电源不是插上就出电的。电源端（充电宝/充电器）通过
   <li>软件上让待机 LED 周期闪烁帮助不大（电流太小），但录音/播放时喇叭工作电流大，一般不会掉电。</li>
 </ul></div>
 
-<!-- ================= 第 4 章 原理图 ================= -->
-<h2 class="ch" id="ch4"><span class="no">04</span>原理图绘制教程</h2>
+<!-- ================= 第 4 章 实板原理图 ================= -->
+<h2 class="ch" id="ch4"><span class="no">04</span>实板原理图</h2>
 
-<div class="chapter-intro">
-  <span class="ci-label">本章导读</span>
-  <ul>
-    <li>工具选择与「模块画成排针」的建库思路；</li>
-    <li>按信号流向分八个区摆放，用网络标签代替飞线；</li>
-    <li>ERC 通过后，用一份评审清单逐条核对易错点。</li>
-  </ul>
-</div>
-
-<h3>4.1 工具选择</h3>
-<div class="table-wrap"><table>
-  <thead><tr><th>工具</th><th>特点</th><th>适合人群</th></tr></thead>
-  <tbody>
-    <tr><td>立创 EDA 专业版（推荐）</td><td>免费、网页/客户端、立创商城元件库带封装一键放置、可直接下单打样 SMT</td><td>首次做板、想快速出实物</td></tr>
-    <tr><td>KiCad</td><td>开源免费、离线、社区库丰富</td><td>想学通用技能、离线环境</td></tr>
-    <tr><td>Altium Designer</td><td>行业标准、功能最全</td><td>有授权的学校实验室</td></tr>
-  </tbody>
-</table></div>
-<p>本章以<strong>立创 EDA 专业版</strong>为例（KiCad 操作逻辑几乎相同）。流程是：新建工程 → 放置元件 → 连线/网络标签 → ERC 检查 → 标注位号 → 转换到 PCB。</p>
-
-<h3>4.2 放置元件与自建符号</h3>
-<ol>
-  <li><strong>优先搜系统库</strong>：依次搜索 <code>STM32F103C8T6</code>、<code>W25Q64</code>、<code>MCP4821</code>、<code>MCP6022</code>、<code>LM386</code>、<code>AMS1117-3.3</code>、<code>TYPE-C-31-M-12</code>（Type-C 供电母座，6P 即可），选「带立创封装」的直接放置；</li>
-  <li><strong>模块画成排针</strong>：MAX4466 模块、W25Q64 模块不焊在板上，画成 2.54mm 排针连接器（如 3P/8P Header），命名 IN/GND/OUT 等与实物丝印一致；</li>
-  <li><strong>找不到库就自绘符号</strong>：打开数据手册第一页的「引脚配置图」，照抄引脚号。规矩：<mark class="key">电源脚朝上、GND 朝下、信号脚朝左右</mark>，引脚名和引脚号逐个核对——原理图引脚号错一个，PCB 全盘皆错；</li>
-  <li>阻容统一用 0805 封装（手焊友好），电解电容用直插或 SMD 铝电解。</li>
-</ol>
-
-<h3>4.3 按信号流向分区摆放</h3>
-<p>不要再一上来就拉线。先把元件按<strong>信号流向从左到右摆成八个区</strong>，再用「网络标签（Net Label）」代替飞线——同名的标签在 PCB 转换时自动连接：</p>
-<p><strong>拾音区 → 录音带通区 → MCU 区 → 存储区 → DAC 区 → 放音滤波区 → 功放区 → 喇叭接口</strong>，电源电路（Type-C 母座、AMS1117、去耦）放右下角独立成区。</p>
-<div class="table-wrap"><table>
-  <thead><tr><th>分区</th><th>元件</th><th>需要放置的网络标签</th></tr></thead>
-  <tbody>
-    <tr><td>电源区</td><td>Type-C 母座（R7/R8 5.1kΩ 下拉）、U7 AMS1117-3.3、100µF + 0.1µF、R6 220Ω + LED1</td><td>5V、3V3、GND</td></tr>
-    <tr><td>MCU 区</td><td>STM32F103C8T6（Blue Pill 排针）、SWD 4P 排针</td><td>PA0、PA1~PA4、PB0、PB1、PB12、SCK1、MISO、MOSI、SCK2、MOSI2、SWDIO、SWCLK</td></tr>
-    <tr><td>拾音区</td><td>MAX4466 排针、R2 1kΩ</td><td>MIC_OUT</td></tr>
-    <tr><td>录音带通区</td><td>MCP6022（U1/U2）、23.2kΩ×2、43.2kΩ×2、374kΩ×2、750kΩ×2、1nF×6、2.2nF×2、R10/R11 10kΩ、C13/C16 100nF、0.1µF</td><td>MIC_OUT、BP_OUT（→PA0）、VREF_1V65</td></tr>
-    <tr><td>存储区</td><td>W25Q64 模块排针、10kΩ 上拉 ×1</td><td>SCK1、MISO、MOSI、F_CS</td></tr>
-    <tr><td>DAC 区</td><td>MCP4821、0.1µF、10kΩ 上拉、⑥脚 /SHDN 接 3V3</td><td>SCK2、MOSI2、D_CS、DAC_OUT</td></tr>
-    <tr><td>放音带通区</td><td>MCP6022（U13/U14）、与录音带通同值阻容、C15 10µF</td><td>DAC_OUT、BP_OUT_P、5V</td></tr>
-    <tr><td>功放区</td><td>LM386、U9 10kΩ 电位器、C17 220µF、C14 100nF、R9 10Ω、C12 100nF</td><td>BP_OUT_P、SPK+、SPK−</td></tr>
-  </tbody>
-</table></div>
-
-<div class="note"><b>两颗 MCP6022 的分工，别搞混</b>
-<ul style="margin:6px 0 0;">
-  <li><strong>录音带通（U1/U2，3V3）</strong>：U1 二阶低通、U2 二阶高通，两个运放单元全部用上，①~⑦脚都有信号；</li>
-  <li><strong>放音带通（U13/U14，5V）</strong>：结构完全相同，阻容值与录音端一一对应，输出经 C15 隔直后进电位器；</li>
-  <li>两片芯片的电源不同（3V3 / 5V），但 750kΩ 都接 1.65V 中点，转 PCB 时务必分开核对。</li>
-</ul></div>
-
-<h3>4.4 ERC 检查与人工评审</h3>
-<p>菜单「设计 → 检查 ERC」。常见报错与处理：</p>
-<ul>
-  <li><strong>网络未连接 / 悬空引脚</strong>：补标签或补线；确实不用的引脚（如 STM32 的 PB 剩余 IO 引到排针）可加「无 ERC」标记；</li>
-  <li><strong>电源网络冲突</strong>：检查是否同时存在 <code>VCC</code> 和 <code>3V3</code> 两个名字——全工程统一用 <code>5V</code>、<code>3V3</code>、<code>GND</code> 三个名字；</li>
-  <li>ERC 通过后再人工过一遍<strong>评审清单</strong>：每个芯片的 VCC/GND 都有去耦电容？W25Q64 的 /WP、/HOLD 处理了吗？MCP4821 的 ⑤脚 /LDAC 接地、⑥脚 /SHDN 拉高了吗？LM386 的 C14 100nF + R9 10Ω Zobel 在吗？<strong>两路带通的 750kΩ 接的是 1.65V 中点（不是 GND）吗？U1/U2 的⑧脚接 3V3、U13/U14 的⑧脚接 5V 吗？1.65V 分压的 C13/C16 在吗？</strong>模块排针顺序与实物一致吗？</li>
-</ul>
-
-<h3>4.5 标注位号并转换 PCB</h3>
-<p>「设计 → 标注（Annotate）」自动分配 R1、C1、U1 等位号 → 「设计 → 转换 PCB」，原理图即告完成。导出 BOM（采购清单）和 PDF 原理图放进报告。</p>
-
-<!-- ================= 第 5 章 PCB ================= -->
-<h2 class="ch" id="ch5"><span class="no">05</span>PCB 布线教程</h2>
-
-<div class="chapter-intro">
-  <span class="ci-label">本章导读</span>
-  <ul>
-    <li>60 × 45mm 双层板的布局分区：数字、模拟、功放各占一侧；</li>
-    <li>地的三条规则与星型电源布线，配套线宽速查表；</li>
-    <li>麦克风线、DAC 模拟链、晶振、去耦电容的具体走法。</li>
-  </ul>
-</div>
-
-<h3>5.1 板框与布局分区</h3>
-<p>建议 <strong>60mm × 45mm 双层板（1.6mm 厚）</strong>，Type-C 母座放板边（方向朝外，插线方便）。布局只遵循一条铁律：<mark class="key">数字区与模拟区分居板子两侧，功放最后</mark>：</p>
-
-<figure>
-<pre class="mermaid">
-flowchart LR
-  subgraph BOARD["PCB 顶层布局分区（60 × 45mm）"]
-    direction LR
-    USBP["Type-C 母座 + 电源区<br>R7/R8 下拉 · U7 AMS1117 / 去耦"] --> DIG["数字区<br>MCU · W25Q64 排母"]
-    DIG --> MID["中间过渡区<br>MCP4821 · 放音带通 U13/U14"]
-    MID --> PWRAMP["功放区<br>LM386 · C17 220µF"]
-    PWRAMP --> SPKJ["喇叭接口<br>（板边）"]
-    DIG --- MICJ["拾音接口 MAX4466<br>（板边，靠模拟侧）"]
-    MICJ --> BPF["录音带通区<br>MCP6022(U1/U2) · 3V3"]
-    BPF --> DIG
-  end
-</pre>
-<figcaption style="text-align:center;color:var(--muted);font-size:0.85rem;">图 5-1　布局分区：模拟信号从两侧板边流向中间，避免横穿数字区</figcaption>
-</figure>
-
-<ul>
-  <li>MAX4466、LM386、喇叭接口分居板子<strong>两个对角</strong>，物理上拉开距离，防声反馈与电磁串扰；</li>
-  <li>MCU 周围 2mm 内放 8MHz 晶振；W25Q64、MCP4821 都用<strong>排母</strong>（芯片焊在转接板/直插）便于更换；</li>
-  <li>按键放板角方便按，LED 放板边可见处；SWD 4P 排针别忘放（调试全靠它）。</li>
-</ul>
-
-<h3>5.2 地的处理（本章最重要的一节）</h3>
-<p>模拟录音系统的噪声，八成出在地线上。三条规则：</p>
-<ol>
-  <li><strong>底层整面铺铜做完整地平面</strong>：底层不布信号线（至少模拟区下方不布），全部铺 GND。信号走在顶层，回流走底层正下方，回路面积最小；</li>
-  <li><strong>功率地与敏感模拟地单点汇合</strong>：LM386 的喇叭电流是毫安~几百毫安级的「脏地」（C17 220µF、Zobel 网络、喇叭回路），在 LM386 附近用一段独立铜皮汇入电源入口的 GND 锚点；MAX4466 输出地、MCP6022 地走各自短线也汇到这里——<strong>各点单独拉线到入口，不要串成菊花链</strong>；</li>
-  <li><strong>喇叭回流不穿模拟区</strong>：从 LM386 到喇叭接口的地线走板边，绝不横穿 MAX4466/滤波区下方。</li>
-</ol>
-
-<h3>5.3 电源布线与线宽</h3>
-<p>电源用<strong>星型分布</strong>：Type-C VBUS 入口先接 100µF+0.1µF 储能，再分三路——去 U7 AMS1117（转 3.3V，供 MCU/Flash/MAX4466/录音带通 U1/U2）、去放音带通 U13/U14、去 LM386。线宽速查：</p>
-<div class="table-wrap"><table>
-  <thead><tr><th>网络</th><th>线宽</th><th>说明</th></tr></thead>
-  <tbody>
-    <tr><td>Type-C VBUS 主干、LM386 至喇叭</td><td>30~40mil</td><td>喇叭峰值电流 100mA+，越粗越好</td></tr>
-    <tr><td>5V 支路（放音带通 U13/U14、LM386 供电）</td><td>20~30mil</td><td></td></tr>
-    <tr><td>3.3V 支路</td><td>20mil</td><td>U7 输出，供 MCU/Flash/MAX4466/DAC/录音带通 U1/U2</td></tr>
-    <tr><td>普通信号（SPI、按键、模拟小信号）</td><td>10~12mil</td><td></td></tr>
-    <tr><td>安全间距</td><td>≥6mil</td><td>新手建议 8mil，DRC 更容易过</td></tr>
-  </tbody>
-</table></div>
-<p>布线顺序建议：先铺 Type-C VBUS 和 GND 骨架 → AMS1117 → 模拟链 → 数字信号，电源走完顺手把 5.1kΩ CC 下拉电阻放在母座旁 3mm 内。</p>
-
-<h3>5.4 关键信号走线</h3>
-<ul>
-  <li><strong>SPI（SCK/MOSI/MISO）</strong>：顶层走短线（≤40mm），尽量不打过孔；两路 SPI 不必刻意等长，18MHz 下远远不需要；</li>
-  <li><strong>麦克风线（MAX4466 OUT → R2 → 低通 U1 → 高通 U2 → PA0）</strong>：全板最敏感的线，越短越好，且<mark class="key">与 SCK、喇叭线正交或远离 5mm 以上</mark>，绝不能与它们平行长距离并排；<strong>R2 前端这段走线控制在 10mm 内</strong>，带通运放不要摆在 W25Q64、晶振、LM386 附近；1.65V 中点的 C13/C16 贴着 U1/U2 的 750kΩ 放；</li>
-  <li><strong>DAC 模拟链（VOUT → 低通 U13 → 高通 U14 → C15 → 电位器 → LM386）</strong>：器件一字排开、走线短而直，滤波电阻电容贴运放放；这条链下方底层保持完整铺地；</li>
-  <li><strong>晶振</strong>：贴 MCU，走线 <10mm，晶振下方（顶层和底层）禁止任何走线，外围可环一圈 GND 过孔「包地」；</li>
-  <li><strong>去耦电容</strong>：每片芯片 VCC 的 0.1µF 距引脚 <2mm，走线「先电容、后芯片」；LM386 电源入口 100µF+0.1µF 紧靠其 ⑥脚。</li>
-</ul>
-
-<h3>5.5 检查、丝印与打样</h3>
-<ol>
-  <li><strong>DRC 检查</strong>：设计规则里间距设 8mil、线宽按 5.3 表，跑 DRC 清零报错；</li>
-  <li><strong>丝印标注</strong>：板上印 <code>KEY1 录音 / KEY2 暂停 / KEY3 播放 / KEY4 重播</code>、<code>5V</code>、<code>3V3</code>、<code>GND</code>、<code>MIC</code>、<code>SPK</code>、项目名与日期——答辩演示时一目了然；</li>
-  <li><strong>测试点</strong>：留 4~6 个直径 1mm 的测试焊盘：GND、5V、3V3、PA0（MIC）、DAC_OUT、LM386 OUT，第 7 章调试全靠它们；</li>
-  <li><strong>导出 Gerber 打样</strong>：立创 EDA 一键「生成 PCB 制造文件」上传嘉立创，2 层板 5 片起免费，选 1.6mm 厚 + 喷锡即可；</li>
-  <li><strong>焊接顺序</strong>：先低后高——贴片阻容 → SOIC/排母 → 电解电容/电位器 → Type-C 母座/排针。<strong>上电前用万用表测 5V-GND、3.3V-GND 电阻</strong>，无短路再插充电宝。</li>
-</ol>
-
-<div class="note"><b>来不及打板？</b>
-比赛/课设周期紧张时，可以先在<strong>洞洞板 + 杜邦线接模块</strong>跑通第 6 章软件，再用本方法打一块正式板；报告里两种方案都有照片，「迭代改进」反而是加分项。布线时若只会单面板，把 5.2 节的「底层地平面」改为顶层密铺 GND + 底层走线，效果打八折但也可用。</div>
+<p>实板的元件位号、参数和连线以原理图为准。</p>
+<p><a href="../SCH_Schematic1_2026-11-24.pdf">查看或下载实板原理图（PDF）</a></p>
 
 <!-- ================= PART III ================= -->
 <section class="part">
@@ -1042,8 +899,8 @@ flowchart LR
   <p>五状态机加三份驱动：录音「中断出数据、主循环搬数据」，播放「中断取数、主循环预读」，最后按七步调试法逐级验证。</p>
 </section>
 
-<!-- ================= 第 6 章 软件 ================= -->
-<h2 class="ch" id="ch6"><span class="no">06</span>软件设计（含完整关键代码）</h2>
+<!-- ================= 第 5 章 软件 ================= -->
+<h2 class="ch" id="ch6"><span class="no">05</span>软件设计（含完整关键代码）</h2>
 
 <div class="chapter-intro">
   <span class="ci-label">本章导读</span>
@@ -1057,7 +914,7 @@ flowchart LR
 <div class="note"><b>随附 Keil 工程的运行行为</b>
 录音以 32 kHz 采样，每 4 个样本合成一个饱和到 0–255 的 8 kHz PCM 样本。开始录音时先清除旧录音的有效标记，录音期间由主循环轮询音频扇区擦除状态，DMA 队列暂存采样。停止时先写完音频，再提交元数据。播放使用两个 256 字节半缓冲，切换前检查是否就绪；采集、存储或播放失败时 LED 快闪，可重新按键操作。下文代码块保留为教学示例，烧录请以随附工程为准。</div>
 
-<h3>6.1 开发环境与总体结构</h3>
+<h3>5.1 开发环境与总体结构</h3>
 <p>使用 <strong>STM32CubeMX + Keil MDK（或 STM32CubeIDE）+ HAL 库</strong>。CubeMX 关键配置如下，其余按默认：</p>
 <div class="table-wrap"><table>
   <thead><tr><th>外设</th><th>配置</th></tr></thead>
@@ -1091,10 +948,10 @@ stateDiagram-v2
     PLAY --> IDLE : 播放完毕 / KEY3 再按
     PLAY --> PLAY : KEY4 重播<br/>回到开头重新放
 </pre>
-<figcaption style="text-align:center;color:var(--muted);font-size:0.85rem;">图 6-1　系统状态机（KEY1 录音 · KEY2 暂停 · KEY3 播放 · KEY4 重播）</figcaption>
+<figcaption style="text-align:center;color:var(--muted);font-size:0.85rem;">图 5-1　系统状态机（KEY1 录音 · KEY2 暂停 · KEY3 播放 · KEY4 重播）</figcaption>
 </figure>
 
-<h3>6.2 W25Q64 驱动（SPI1，8bit 帧）</h3>
+<h3>5.2 W25Q64 驱动（SPI1，8bit 帧）</h3>
 <span class="codetitle">w25q64.c</span>
 <pre class="codeblock"><code>#include "w25q64.h"
 #include "spi.h"
@@ -1198,7 +1055,7 @@ void W25_ReadData(uint32_t addr, uint8_t *buf, uint16_t len)
     W25_CS_HIGH();
 }</code></pre>
 
-<h3>6.3 MCP4821 驱动（SPI2，16bit 帧）</h3>
+<h3>5.3 MCP4821 驱动（SPI2，16bit 帧）</h3>
 <span class="codetitle">mcp4821.c</span>
 <pre class="codeblock"><code>#include "mcp4821.h"
 #include "spi.h"
@@ -1214,7 +1071,7 @@ void MCP4821_Write(uint16_t dat12)
     HAL_GPIO_WritePin(DAC_CS_GPIO_Port, DAC_CS_Pin, GPIO_PIN_SET); /* 上升沿更新输出 */
 }</code></pre>
 
-<h3>6.4 录音通道：TIM3 触发 ADC + DMA 循环搬运</h3>
+<h3>5.4 录音通道：TIM3 触发 ADC + DMA 循环搬运</h3>
 <p>DMA 在 512 点缓冲上循环，<strong>半传输/全传输中断各通知主循环 256 点</strong>（正好一个 Flash 页）。中断里只置标志，Flash 写入在主循环完成——这是保证不丢数据的经典分工。ADC 以 1.65V 为静音中点（≈2048），右移 4 位后中点变成 0x80 = 128，正好对应 DAC 的 2048 中点，录放两端电平天然对齐。</p>
 <span class="codetitle">record.c</span>
 <pre class="codeblock"><code>#include "main.h"
@@ -1243,7 +1100,7 @@ void Record_Start(void)
     uint32_t i, n_sec = (REC_BYTES_MAX + 4095) / 4096;
 
     HAL_GPIO_WritePin(LED_REC_GPIO_Port, LED_REC_Pin, GPIO_PIN_RESET); /* 灯亮 */
-    for (i = 0; i &lt; n_sec; i++)                     /* 20 扇区典型约 1s（最坏 ~8s，见 6.4 注） */
+    for (i = 0; i &lt; n_sec; i++)                     /* 20 扇区典型约 1s（最坏 ~8s，见 5.4 注） */
         W25_SectorErase(REC_START_ADDR + i * 4096);
 
     flash_addr = REC_START_ADDR;
@@ -1301,7 +1158,7 @@ void Record_Stop(void)
 <div class="note"><b>为什么 Flash 必须先擦后写？</b>
 Flash 只能<mark class="key">把 1 写成 0</mark>，新数据必须先擦除。扇区擦除可能超过每页音频的 32ms 采集窗口。上面的教学示例在按键后、采样前集中擦除本次使用的扇区（LED 亮着即「准备中」，典型约 1 秒、最坏 8 秒）。<strong>在意「按下即录」的等待感</strong>，可改用 32KB 块擦除指令（0x52，典型 150ms/块），80KB 只需 3 块约 0.5 秒。</div>
 
-<h3>6.5 播放通道：TIM2 8kHz 中断送 DAC + 主循环预读 Flash</h3>
+<h3>5.5 播放通道：TIM2 8kHz 中断送 DAC + 主循环预读 Flash</h3>
 <p>下面的双缓冲示例中，TIM2 中断（8kHz）只从<strong>当前缓冲</strong>取数写 DAC，播完一块时若 <code>buf_ready</code> 已置位就立即切到下一块；主循环在当前缓冲<strong>播到一半（32ms）</strong>时就把下一块 512Byte 从 Flash 预读进备用缓冲。逐字节 HAL 读一块约 1ms，远小于 32ms 余量，中断侧在备用缓冲尚未就绪时输出静音。</p>
 <span class="codetitle">play.c</span>
 <pre class="codeblock"><code>#include "main.h"
@@ -1409,7 +1266,7 @@ void Play_Stop(void)
 <div class="note"><b>爆音从哪来？</b>
 直接从 0 开始播，扬声器膜片会被「阶跃」拍一下发出「啪」声。代码在开头做了 <strong>50ms 线性音量斜坡</strong>（RAMP_N 段），结尾因缓冲尾部补 0x80 中点自然归零，<strong>中途按键停止也做了 40 级快速淡出</strong>（Play_Stop），两个方向都平滑。</div>
 
-<h3>6.6 按键与主状态机</h3>
+<h3>5.6 按键与主状态机</h3>
 <span class="codetitle">main.c</span>
 <pre class="codeblock"><code>#include "main.h"
 
@@ -1506,8 +1363,8 @@ int main(void)
 
 <div class="note"><b>关键引脚宏</b>：在 CubeMX 里给 PB0 标签 <code>FLASH_CS</code>、PB12 标签 <code>DAC_CS</code>、PC13 标签 <code>LED_REC</code>、PB1 标签 <code>LED_PLAY</code>、PA1~PA4 标签 <code>KEY1~KEY4</code>，生成代码后上面文件即可直接编译。</div>
 
-<!-- ================= 第 7 章 调试 ================= -->
-<h2 class="ch" id="ch7"><span class="no">07</span>调试步骤与常见问题排查</h2>
+<!-- ================= 第 6 章 调试 ================= -->
+<h2 class="ch" id="ch7"><span class="no">06</span>调试步骤与常见问题排查</h2>
 
 <div class="chapter-intro">
   <span class="ci-label">本章导读</span>
@@ -1518,7 +1375,7 @@ int main(void)
   </ul>
 </div>
 
-<h3>7.1 分步调试法（每步通过再进下一步）</h3>
+<h3>6.1 分步调试法（每步通过再进下一步）</h3>
 <ol>
   <li><strong>人机部分</strong>：LED 闪烁、按键消抖打印串口信息；</li>
   <li><strong>Flash 自检</strong>：读 JEDEC ID，串口打印应得 <code>0xEF4017</code>；写一页、读回、比对；</li>
@@ -1529,7 +1386,7 @@ int main(void)
   <li><strong>整机联调</strong>：录 10 秒→播放，先听能不能听清，再修音质。</li>
 </ol>
 
-<h3>7.2 常见问题速查表</h3>
+<h3>6.2 常见问题速查表</h3>
 <div class="table-wrap"><table>
   <thead><tr><th>现象</th><th>可能原因</th><th>排查方法</th></tr></thead>
   <tbody>
@@ -1551,7 +1408,7 @@ int main(void)
   </tbody>
 </table></div>
 
-<h3>7.3 测试记录表（报告可直接引用）</h3>
+<h3>6.3 测试记录表（报告可直接引用）</h3>
 <div class="table-wrap"><table>
   <thead><tr><th>测试项</th><th>方法</th><th>设计值</th><th>实测</th></tr></thead>
   <tbody>
@@ -1569,8 +1426,8 @@ int main(void)
   </tbody>
 </table></div>
 
-<!-- ================= 第 8 章 发挥 ================= -->
-<h2 class="ch" id="ch8"><span class="no">08</span>发挥部分进阶</h2>
+<!-- ================= 第 7 章 发挥 ================= -->
+<h2 class="ch" id="ch8"><span class="no">07</span>发挥部分进阶</h2>
 
 <div class="chapter-intro">
   <span class="ci-label">本章导读</span>
@@ -1581,20 +1438,20 @@ int main(void)
   </ul>
 </div>
 
-<h3>8.1 自动音量控制（AGC）</h3>
+<h3>7.1 自动音量控制（AGC）</h3>
 <p>在 Record_Task 的每块（32ms）里统计峰值 <code>peak</code>，与目标区间（如 1200~3400 码字）比较，慢速调节 MAX4466 没法软件控制，但对<strong>数字增益</strong>做归一化即可：维护变量 <code>gain</code>（Q8 定点，1.0 起步），输出 <code>y = min(255, (x-128)*gain/256 + 128)</code>；峰值偏小则 gain 缓升，接近削顶则快速回落。<mark class="key">上升慢、下降快</mark>是 AGC 不喘息的关键。</p>
 
-<h3>8.2 压缩存储提高利用率</h3>
+<h3>7.2 压缩存储提高利用率</h3>
 <ul>
   <li><strong>8bit 截取</strong>（教程默认）：12bit 右移 4 位，速度 8KB/s，约 1024 秒；</li>
   <li><strong>4bit DPCM</strong>：只存相邻样点差分（差值压到 ±7），加 1bit 符号，4KB/s，约 2048 秒；解码只需累加，F103 毫无压力；</li>
   <li><strong>μ-law 对数压扩</strong>：8bit 可获得接近 12bit 的听感动态，码率不变但小信号信噪比显著改善——这是报告里「理论分析」的好素材。</li>
 </ul>
 
-<h3>8.3 多段录音与选段播放</h3>
+<h3>7.3 多段录音与选段播放</h3>
 <p>把 W25Q64 划成 N 段（8MB 全用起来：如 <strong>64 段 × 128KB</strong>（每段 16 秒），或 8 段 × 1MB），在 Flash 末尾一个扇区存「目录页」：每段记录起始地址、字节数。KEY1 录新段（段号循环），KEY3 播当前段、KEY2 暂停，长按 KEY4 切上一段重播。目录页每段录完时更新一次（注意：改写目录前先擦该扇区）。</p>
 
-<h3>8.4 更多加分点</h3>
+<h3>7.4 更多加分点</h3>
 <ul>
   <li><strong>降噪</strong>：300Hz 高通可由软件一阶差分 <code>y[n]=x[n]-x[n-1]+0.85*x[n-1]</code> 实现，去直流漂移和低频隆隆声；</li>
   <li><strong>串口上传波形</strong>：采样时同步把 12bit 数据经 USART（115200bps 够 8kHz×2B？8k×2=16KB/s &gt; 11.5KB/s，改 230400bps）发到 PC，串口示波器/Python 画波形，演示效果好；</li>
@@ -1602,7 +1459,7 @@ int main(void)
 </ul>
 
 <div class="warn"><b>报告建议</b>
-按原题评分结构写报告：方案论证（为何片内 ADC + SPI Flash）→ 理论计算（采样率、容量、滤波器 fc、写入时序余量）→ 电路图 → 测试数据（用 7.3 表格）→ 误差与改进分析。第 8 章每个发挥项都对应分数，做一项写一项。</div>
+按原题评分结构写报告：方案论证（为何片内 ADC + SPI Flash）→ 理论计算（采样率、容量、滤波器 fc、写入时序余量）→ 电路图 → 测试数据（用 6.3 表格）→ 误差与改进分析。第 7 章每个发挥项都对应分数，做一项写一项。</div>
 
 </main>
 </div>
