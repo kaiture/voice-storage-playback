@@ -9,9 +9,9 @@
 开头从桌面全景拉近到已通电的紫色 PCB。实板左上角是麦克风，中间是 Blue Pill 主控板，右侧可以看到按键、音量电位器和扬声器。约 00:04 和 00:24，手指伸向板边按键区域。后半段保持实板近景，可结合下方轻量版的现场音轨查看完整演示。
 
 <details>
-<summary>展开查看完整 49 秒无声动图（约 1 MB）</summary>
+<summary>展开查看完整 49 秒无声动图（约 420 KB）</summary>
 
-![实板演示全过程](docs/demo-preview.gif)
+![实板演示全过程](docs/demo-preview.webp)
 
 </details>
 
