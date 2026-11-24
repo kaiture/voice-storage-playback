@@ -6,7 +6,7 @@
 
 ![实板演示从 00:00 到 00:48 的八张截图](docs/demo-frames.jpg)
 
-开头从桌面全景拉近到已通电的紫色 PCB。实板左上角是麦克风，中间是 Blue Pill 主控板，右侧可以看到按键、音量电位器和扬声器。约 00:04 和 00:24，手指伸向板边按键区域。后半段保持实板近景，可结合下方轻量版的现场音轨查看完整演示。
+开头从桌面全景拉近到已通电的紫色 PCB。实板左上角是麦克风，中间是 Blue Pill 主控板，右侧可以看到按键、音量电位器和扬声器。约 00:04 和 00:24，手指伸向板边按键区域。后半段保持实板近景，可点击下方链接观看完整演示。
 
 <details>
 <summary>展开查看完整 49 秒无声动图（约 420 KB）</summary>
@@ -15,7 +15,7 @@
 
 </details>
 
-[播放带原声的轻量版演示（49 秒，约 637 KB）](https://raw.githubusercontent.com/kaiture/voice-storage-playback/main/docs/demo-small.mp4)
+[在哔哩哔哩观看演示《数字语音存储与回放系统》](https://www.bilibili.com/video/BV157yHzjE1P/)
 
 ## 按键操作
 
