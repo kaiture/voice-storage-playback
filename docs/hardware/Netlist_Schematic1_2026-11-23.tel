@@ -1,0 +1,83 @@
+$PACKAGES
+瓷片 ! 瓷片 ! '2.2nF' ; C4 C10 
+电解电容 ! 电解电容 ! 10uF ; C17 
+电解电容 ! 电解电容 ! 220uf ; C16 
+喇叭 ! 喇叭 ! '{Value}' ; U10 
+C0603 ! C0603 ! 100nf ; C18 
+C0603 ! C0603 ! 100nF ; C9 C12 C14 C20 
+C0603 ! C0603 ! 10uF ; C8 C11 C13 C15 C19 
+C0603 ! C0603 ! 1nF ; C1 C2 C3 C5 C6 C7 
+,
+        CONN-TH_L53.3-W22.9_STM32F103C8T6-CARD ! CONN-TH_L53.3-W22.9_STM32F103C8T6-CARD !  ,
+        ; U5 
+DIP-8_L9.7-W6.4-P2.54-LS7.6-BL ! DIP-8_L9.7-W6.4-P2.54-LS7.6-BL ! '{Value}' ; ,
+        U8 
+Key_TH_3.5x6x4.3 ! Key_TH_3.5x6x4.3 ! '{Value}' ; SW1 SW2 SW3 SW4 
+LED_TH-3mm ! LED_TH-3mm ! '{Value}' ; LED1 
+MAX4466-MODULE_DIP3 ! MAX4466-MODULE_DIP3 !  ; U3 
+PDIP-8_L9.6-W6.4-P2.54-LS7.9-BL ! PDIP-8_L9.6-W6.4-P2.54-LS7.9-BL ! '{Value}' ,
+        ; U1 U2 
+Res_1/4W ! Res_1/4W ! '10Ω' ; R13 
+Res_1/4W ! Res_1/4W ! '1kΩ' ; R1 
+Res_1/4W ! Res_1/4W ! '20kΩ' ; R2 R6 
+Res_1/4W ! Res_1/4W ! '220Ω' ; R10 
+Res_1/4W ! Res_1/4W ! '300kΩ' ; R5 R9 
+Res_1/4W ! Res_1/4W ! '47kΩ' ; R3 R7 
+Res_1/4W ! Res_1/4W ! '5.1kΩ' ; R11 R12 
+Res_1/4W ! Res_1/4W ! '680kΩ' ; R4 R8 
+Res_1/4W ! Res_1/4W ! 10K ; R14 R15 
+RES-ADJ-TH_RV09 ! RES-ADJ-TH_RV09 ! '{Value}' ; U9 
+SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL ! SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL ! '{Value}' ,
+        ; U6 
+,
+        SOT-223-3_L6.5-W3.4-P2.30-LS7.0-BR ! SOT-223-3_L6.5-W3.4-P2.30-LS7.0-BR ! '{Value}' ,
+        ; U7 
+USB_ TYPE-C-6P ! USB_ TYPE-C-6P ! '{Value}' ; USB1 
+W25Q64闪存 ! W25Q64闪存 !  ; U4 
+$A_PROPERTIES
+$NETS
+'+5V' ; C13.2 C14.2 U2.8 U7.3 U8.6 USB1.A9 USB1.B9 
+'$1N106' ; R1.2 U3.1 
+'$1N120' ; U8.3 U9.2 
+'$1N129' ; C18.2 R13.2 
+'$1N153' ; C1.2 R3.2 U1.3 
+'$1N154' ; C2.1 C4.2 U1.1 U1.2 
+'$1N155' ; C4.1 R2.2 R3.1 
+'$1N158' ; C3.2 R4.2 U1.5 
+'$1N160' ; C2.2 C3.1 R5.1 
+'$1N199' ; C6.2 C7.1 R9.1 
+'$1N200' ; C7.2 R8.2 U2.5 
+'$1N202' ; C6.1 C10.2 U2.1 U2.2 
+'$1N203' ; C10.1 R6.2 R7.1 
+'$1N204' ; C5.2 R7.2 U2.3 
+'$1N206' ; C17.2 U9.1 
+'$1N32' ; R11.1 USB1.A5 
+'$1N33' ; LED1.1 R10.1 
+'$1N34' ; R12.1 USB1.B5 
+'$1N86' ; C15.2 U8.7 
+'$1N87' ; C16.1 C18.1 U8.5 
+'1.65V' ; C19.2 C20.2 R4.1 R8.1 R14.2 R15.1 
+'CS#' ; U5.21 U6.2 
+'IN+' ; C17.1 R9.2 U2.6 U2.7 
+3V3 ; C8.2 C9.2 C11.2 C12.1 R10.2 R14.1 U1.8 U3.3 U4.6 U5.18 U5.40 U6.1 U6.6 ,
+        U7.2 U7.4 
+CLK ; U4.2 U5.10 
+CS ; U4.5 U5.13 
+DI ; U4.1 U5.12 
+DO ; U4.4 U5.11 
+GND ; C1.1 C5.1 C8.1 C9.1 C11.1 C12.2 C13.1 C14.1 C15.1 C19.1 C20.1 LED1.2 ,
+        R13.1 R15.2 SW1.B SW2.B SW3.B SW4.B U1.4 U2.4 U3.2 U4.3 U5.19 U5.20 ,
+        U5.39 U6.5 U6.7 U7.1 U8.2 U8.4 U9.3 U10.2 USB1.7 USB1.8 USB1.9 USB1.10 ,
+        USB1.A12 USB1.B12 
+KEY1 ; SW1.A U5.6 
+KEY2 ; SW2.A U5.7 
+KEY3 ; SW3.A U5.8 
+KEY4 ; SW4.A U5.9 
+OUT ; R1.1 R2.1 
+PA0 ; R5.2 U1.6 U1.7 U5.5 
+SCK ; U5.22 U6.3 
+SDI ; U5.24 U6.4 
+VO ; C16.2 U10.1 
+VOUT ; R6.1 U6.8 
+$SCHEDULE
+$END
